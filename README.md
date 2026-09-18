@@ -28,7 +28,7 @@ flowchart LR
 
 The agent is given a goal, not a script. After reading the backlog it decides whether the idea overlaps an existing ticket. That decision picks the branch: comment and stop, or structure a brief and file it. If the idea is missing a target page, metric or rationale, the agent infers one and the ticket says so in a visible note. An iteration cap stops the loop if it ever fails to finish.
 
-Live discovery endpoint: _URL added after deploy_
+Live discovery endpoint: https://experiment-intake-tools-555914170238.us-central1.run.app/discovery
 
 Demo backlog: https://github.com/corduroyfields/experiment-backlog/issues
 
