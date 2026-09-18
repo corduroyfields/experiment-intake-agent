@@ -69,6 +69,14 @@ uv run python intake_agent.py "Let's try a free shipping progress bar in the car
 
 Set `TOOLS_URL` to point the agent at the deployed service instead of localhost.
 
-## A note on how this was built
+## AI assistance disclosure
 
-I built this with Claude Code as a programming assistant. I wrote the product spec, made the scope and design decisions, and tested both branches against a real backlog. Claude wrote most of the code, and I reviewed it with its help. I say this openly because working well with AI tooling is part of the skill set I am building, and I would rather be straightforward about my process. I am not a developer by trade.
+I built this project with substantial help from Anthropic's Claude, in two stages.
+
+**The product requirements document.** I used Claude to help draft the PRD, the written spec for what to build and why. I set the direction: the problem to solve, the fit with Optimizely's agent platform, the time limit, and what to cut if I fell behind. Claude helped me structure and write it up. The first version specced an idea-generation tool. I scrapped it after seeing that Optimizely already ships one, and the second version is what this repo implements.
+
+**The codebase.** I handed the PRD to Claude Code, Anthropic's coding assistant, which wrote the code, the Dockerfile and this README. It also read the Opal Tools SDK source to confirm the tool endpoint paths, seeded the demo backlog, ran the tests against it, and deployed the service to Google Cloud Run. My role was to direct the work, answer its questions, review the results, and make the judgment calls along the way. One example: I moved the deployment into its own Google Cloud project instead of reusing one from an earlier project. I created the GitHub access token and handled the credentials myself.
+
+**How it was checked.** Both paths, catching a duplicate and filing a new ticket, were run against the real backlog and the live service. The results linked above are the actual output, not mock-ups.
+
+I disclose this openly because working well with AI tools is part of the skill set I am building, and I would rather be straightforward about my process than imply I did it alone. I am not a developer by trade. My background is in technical customer-facing roles.
