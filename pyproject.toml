@@ -1,0 +1,14 @@
+[project]
+name = "experiment-intake-agent"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "anthropic>=1.6.0",
+    "fastapi>=0.141.1",
+    "httpx>=0.28.1",
+    "optimizely-opal-opal-tools-sdk>=0.1.46.dev0",
+    "python-dotenv>=1.2.3",
+    "uvicorn>=0.53.0",
+]
