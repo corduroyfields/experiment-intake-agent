@@ -5,8 +5,15 @@ An AI agent that turns a raw experiment idea into a properly structured backlog 
 ## Summary
 
 - **The problem.** Optimizely Opal makes experiment ideas cheap to generate. The step after that, getting an idea into the backlog as a well-formed test without duplicating one that is already there, is still manual and unowned.
-- **What I built.** A tools service built with Optimizely's own Opal Tools SDK, so it follows the same contract Opal uses to call custom tools. It is deployed live on Google Cloud. I also built an agent that drives those tools end to end, because registering a tool inside Opal requires a provisioned customer org.
+- **What I built.** A tools service built with Optimizely's own Opal Tools SDK, so it follows the same contract Opal uses to call custom tools. It ran live on Google Cloud Run until the project was retired. I also built an agent that drives those tools end to end, because registering a tool inside Opal requires a provisioned customer org.
 - **The outcome.** Given a duplicate idea, the agent comments on the existing ticket and files nothing new. Given a novel idea, it files a structured brief and flags any detail it had to infer. Both results are live in a public backlog you can click through below.
+
+> [!NOTE]
+> **The hosted service was retired on 1 October 2026.** This was an interview build, so the
+> cloud project behind it has been deleted to stop it costing anything. The live discovery URL
+> below no longer responds. Everything else still works: the code runs locally, the saved
+> discovery output is in [discovery.json](discovery.json), and the backlog tickets the agent
+> filed are still in GitHub.
 
 ## See the outcome in two minutes
 
@@ -15,7 +22,7 @@ No setup needed. Everything below is a link.
 1. **A ticket the agent filed from one sentence.** [Ticket #8](https://github.com/corduroyfields/experiment-backlog/issues/8) came from the input *"Let's try a free shipping progress bar in the cart drawer."* The agent wrote the hypothesis, chose a primary metric, and put a note at the top saying which fields it inferred so a human can confirm them.
 2. **A duplicate the agent caught.** The input *"What if the add to cart button followed them down the page?"* never uses the word "sticky", but the agent matched it to [ticket #1](https://github.com/corduroyfields/experiment-backlog/issues/1), "Sticky add-to-cart bar". Instead of filing a duplicate, it [added a comment](https://github.com/corduroyfields/experiment-backlog/issues/1#issuecomment-5734937322) with the one new idea the input contributed.
 3. **The agent's reasoning, step by step.** The [duplicate run](docs/run-duplicate.txt) and the [novel run](docs/run-novel.txt) are saved exactly as they printed. Each one shows the tools the agent called and why it chose that path.
-4. **The contract Opal would read.** The [live discovery endpoint](https://experiment-intake-tools-555914170238.us-central1.run.app/discovery) lists each of the three tools with its parameters and URL. It is plain JSON and opens in any browser.
+4. **The contract Opal would read.** The discovery endpoint lists each of the three tools with its parameters and URL. It ran at `https://experiment-intake-tools-555914170238.us-central1.run.app/discovery` until the service was retired, and the exact output it returned is saved in [discovery.json](discovery.json).
 5. **The decision point in the code.** [intake_agent.py, line 86](intake_agent.py#L86). There is no "if duplicate" rule. The agent picks its next action after reading the backlog, which is what makes it an agent rather than a script.
 
 The [backlog itself](https://github.com/corduroyfields/experiment-backlog/issues) holds four seeded tickets (#1 to #4) plus #8, which the agent filed. Closed tickets #5 to #7 are from rehearsal runs.
